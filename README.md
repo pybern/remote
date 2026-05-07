@@ -98,6 +98,50 @@ cd ../..
 - `./status-demo.sh` - run a script from the current folder.
 - `cd ../..` - move back up two directory levels.
 
+## How to read each command part
+
+Use this pattern for most Linux commands:
+
+`command [options] [arguments]`
+
+- `command` - the program to run, like `ls`, `cd`, `systemctl`, `journalctl`.
+- `options` - switches that change behavior, like `-l`, `-a`, `-n 30`, `--no-pager`.
+- `arguments` - what the command acts on, like `scripts/startup` or `remote-demo`.
+
+Examples from this lab:
+
+- `ls -la scripts/startup`
+  - `ls` = list files.
+  - `-l` = long format (permissions, owner, size, time).
+  - `-a` = include hidden files.
+  - `scripts/startup` = target directory to list.
+
+- `chmod +x scripts/startup/*.sh`
+  - `chmod` = change permissions.
+  - `+x` = add execute permission.
+  - `scripts/startup/*.sh` = all `.sh` files in that folder (`*` is a wildcard).
+
+- `./scripts/startup/start-demo.sh`
+  - `./` = run from current directory context (current folder path).
+  - `scripts/startup/start-demo.sh` = relative path to the script.
+
+- `cd ../..`
+  - `cd` = change directory.
+  - `..` = parent directory.
+  - `../..` = go up two levels.
+
+- `sudo systemctl restart remote-demo`
+  - `sudo` = run with administrator (root) privileges.
+  - `systemctl` = manage `systemd` services.
+  - `restart` = action/subcommand.
+  - `remote-demo` = service name (unit without `.service`).
+
+- `journalctl -u remote-demo -n 30 --no-pager`
+  - `journalctl` = view system logs.
+  - `-u remote-demo` = logs for this service only.
+  - `-n 30` = show last 30 lines.
+  - `--no-pager` = print directly to terminal (no interactive pager).
+
 ## Notes
 
 - Runtime files are written to `run/` (`demo-service.pid`, `demo-service.log`)
